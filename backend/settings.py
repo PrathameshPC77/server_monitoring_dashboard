@@ -25,7 +25,14 @@ SECRET_KEY = 'django-insecure-l79z^@$iw+c041xk4fgtp*hn_bbcl!l2=+zdzon-1nn_ztxs3^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://server-monitoring-dashboard-gogy.onrender.com','local','127.0.0.1']
+import os
+
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS = [RENDER_EXTERNAL_HOSTNAME, 'localhost', '127.0.0.1']
+else:
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+# ALLOWED_HOSTS = ['https://server-monitoring-dashboard-gogy.onrender.com','local','127.0.0.1']
 
 
 # Application definition
